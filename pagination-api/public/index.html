@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries and Capitals</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Countries and Capitals</h1>
+        <div class="controls">
+            <label for="pageSizeTop">Show:</label>
+            <select id="pageSizeTop"></select>
+        </div>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Country</th>
+                    <th>Capital</th>
+                    <th>Famous Place</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th><input type="text" id="countryFilter" placeholder="Search here"></th>
+                    <th><input type="text" id="capitalFilter" placeholder="Search here"></th>
+                    <th><input type="text" id="placeFilter" placeholder="Search here"></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div class="controls">
+            <label for="pageSizeBottom">Show:</label>
+            <select id="pageSizeBottom"></select>
+        </div>
+        <div class="pagination" id="pagination"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
