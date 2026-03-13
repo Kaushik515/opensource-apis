@@ -1,0 +1,16 @@
+{
+  "name": "opensource-api",
+  "version": "1.0.0",
+  "description": "Simple REST API with pagination (Node.js, Express, CORS, in-memory data)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["rest", "api", "pagination", "express", "cors"],
+  "author": "Open Source",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
