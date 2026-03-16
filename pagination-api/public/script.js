@@ -114,4 +114,43 @@ document.addEventListener('DOMContentLoaded', () => {
     setPageSizeOptions();
     setFilterEvents();
     fetchData();
+
+    // Add item form handler
+    const addItemForm = document.getElementById('addItemForm');
+    addItemForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const country = document.getElementById('addCountry').value.trim();
+        const capital = document.getElementById('addCapital').value.trim();
+        const place = document.getElementById('addPlace').value.trim();
+        if (!country || !capital || !place) return;
+        // Post new item to API
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ country, capital, place })
+        })
+        .then(res => res.json())
+        .then(newItem => {
+            // Prepend new item to table
+            prependRow(newItem);
+            // Optionally, refresh data or reset form
+            addItemForm.reset();
+        });
+    });
 });
+
+// Prepend new row to table
+function prependRow(item) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td>${item.id}</td>
+        <td>${item.country}</td>
+        <td>${item.capital}</td>
+        <td>${item.place}</td>
+    `;
+    if (tableBody.firstChild) {
+        tableBody.insertBefore(tr, tableBody.firstChild);
+    } else {
+        tableBody.appendChild(tr);
+    }
+}

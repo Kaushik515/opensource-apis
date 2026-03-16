@@ -212,6 +212,7 @@ const items = [
 ].map((item, idx) => ({ id: idx + 1, ...item }));
 
 app.use(cors());
+app.use(express.json()); // Needed for JSON body parsing
 
 app.get('/api/items', (req, res) => {
   const page = parseInt(req.query.page, 10) || 1;
@@ -238,6 +239,18 @@ app.get('/api/items', (req, res) => {
     pageSize,
     totalPages
   });
+});
+
+// Add new item (prepend to array)
+app.post('/api/items', (req, res) => {
+  const { country, capital, place } = req.body;
+  if (!country || !capital || !place) {
+    return res.status(400).json({ error: 'Missing fields' });
+  }
+  const newId = items.length ? Math.max(...items.map(i => i.id)) + 1 : 1;
+  const newItem = { id: newId, country, capital, place };
+  items.unshift(newItem); // Prepend
+  res.json(newItem);
 });
 
 app.listen(PORT, () => {
